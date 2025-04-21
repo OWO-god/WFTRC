@@ -1,0 +1,246 @@
+/* --- 整體背景顏色 --- */
+body {
+  background-color: #E0E0E0;
+  margin-top: 80px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* --- 導覽列設定 --- */
+header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ecf0f1;
+  padding: 0 40px;
+  height: 60px;
+  box-sizing: border-box;
+  z-index: 300;
+  width: 100%;
+}
+
+/* 標題 */
+header h1 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+/* 導覽連結容器 */
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+/* 導覽按鈕樣式 */
+nav a {
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+nav a:hover {
+  color: #607B7D;
+}
+
+/* 底線動畫效果 */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: #607B7D;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- 背景圖片容器設定 --- */
+.background-container {
+  position: relative;
+  width: 80%; /* 設定寬度為視口寬度的 80% */
+  min-height: 750px;  /* 增加最小高度來保證圖片顯示 */
+  background-image: url('終端機背景.jpg'); /* 確保圖片路徑正確 */
+  background-size: cover;  /* 使圖片覆蓋整個容器 */
+  background-position: center;  /* 圖片居中顯示 */
+  margin: 0 auto; /* 水平居中容器 */
+  border-radius: 15px; /* 設定圓角效果 */
+}
+
+/* 標題容器 */
+.title-container {
+  position: absolute;
+  top: 50%;  /* 垂直居中 */
+  left: -100px;  /* 向左偏移 20px（可以根據需要調整） */
+  transform: translate(0, -50%); /* 垂直居中且保持向左偏移 */
+  background-color: rgba(37, 41, 28, 0.9); /* 背景半透明 */
+  padding: 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  text-align: left; /* 使文字靠左對齊 */
+  width: 650px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* 防止文字換行 */
+}
+
+/* 小標題 */
+.hub h1.small {
+  font-size: 3rem;
+  margin: 0;
+}
+
+/* 大標題 */
+.hub h1.large {
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap; /* 防止換行 */
+}
+
+/* 目的區塊設定 */
+.purpose-container {
+  right: 100px;
+  margin-top: 30px; /* 增加與標題的距離 */
+  width: 100%;
+  text-align: left;
+  padding: 30px;
+  padding-left: 100px;
+  border-radius: 8px;
+}
+
+.purpose-title {
+  right: 100px;  /* 向左偏移 20px（可以根據需要調整） */
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.purpose-content {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.slogan {
+  margin-top: 30px; /* 增加與標題的距離 */
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.slogan h1{
+  text-align: center;
+  font-size: 3rem;
+  line-height: 1.6;
+}
+
+/* === Mac 卡片滑動區塊樣式 === */
+.mac-slider {
+  padding: 40px 0;
+}
+
+.mac-slider h1 {
+  text-align: left;
+  font-size: 2.5rem;
+  padding-left: 20px;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 16px 0;
+  width: 100%;
+}
+
+.card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 450px;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.scroll-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+
+footer {
+  background-color: #000000;
+  color: #B7B7B7;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+
+

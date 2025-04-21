@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WFTRC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+      <h1>WFSH 113 實驗班</h1>
+      <nav>
+        <a href="#hub">首頁</a>
+        <a href="#infomation">資訊</a>
+        <a href="#section3">議程</a>
+        <a href="#about_us">關於我們</a>
+        <a href="#staff_intro">幹部介紹</a>
+      </nav>
+    </header>
+  
+    <!-- Section：集訓宗旨 (hub) -->
+    <section id="hub" class="hub">
+      <div class="background-container">
+        <!-- 標題容器 -->
+        <div class="title-container">
+          <h1 class="small">IOT之旅</h1>
+          <h1 class="large">2025 WFTRC集訓</h1>
+        </div>
+      </div>
+    </section>
+  
+    <!-- 新增的目的區塊 -->
+    <section id="purpose" class="purpose-container">
+      <div class="purpose-container">
+        <h2 class="purpose-title">目的</h2>
+        <p class="purpose-content">
+          隨著科技進步，物聯網日益普及，從自走車入門，到加值擴展各種功能，我們追求挑戰與突破的精神。
+        </p>
+      </div>
+    </section>
+    <section id="purpose" class="slogan">
+      <div class="slogan">
+        <h1>"沒有做不到，只有想不到"</h2>
+      </div>
+    </section>
+
+    <!-- 🔽 新增：卡片滑動區塊 -->
+    <section class="mac-slider">
+      <h1>了解 Mac。</h1>
+      <div class="slider-container">
+        <button class="scroll-btn left" onclick="scrollCards(-1)">&#10094;</button>
+
+        <div class="scroll-container" id="cardContainer">
+          <!-- 9 張卡片 -->
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=AI+與+macOS" alt="">
+            <h3>容易用，容易愛上。</h3>
+            <p>Apple Intelligence 與 macOS 緊密結合。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=效能+與+電池" alt="">
+            <h3>速度快，持續耐久。</h3>
+            <p>高效能晶片與電池續航力強。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=Mac+iPhone" alt="">
+            <h3>夢幻組合。</h3>
+            <p>無縫接軌你的裝置。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=App+相容性" alt="">
+            <h3>熟悉的 App 都能用。</h3>
+            <p>Word、Excel、Slack 全都支援。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=安全性" alt="">
+            <h3>內建保護。</h3>
+            <p>強化的安全與隱私控制。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=創意工具" alt="">
+            <h3>激發創意。</h3>
+            <p>從 Final Cut Pro 到 Logic Pro，應有盡有。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=iCloud+整合" alt="">
+            <h3>資料隨手可得。</h3>
+            <p>所有裝置自動同步。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=鍵盤+滑鼠支援" alt="">
+            <h3>無痛切換。</h3>
+            <p>鍵盤滑鼠一套通吃。</p>
+          </div>
+          <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=macOS+更新" alt="">
+            <h3>一直進化。</h3>
+            <p>每年都有新功能、新體驗。</p>
+          </div>
+        </div>
+
+        <button class="scroll-btn right" onclick="scrollCards(1)">&#10095;</button>
+      </div>
+    </section>
+    <footer>
+      <p>Copyright © 2023 Hamiki All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS 控制滑動 -->
+    <script>
+      function scrollCards(direction) {
+        const container = document.getElementById('cardContainer');
+        const scrollAmount = 320;
+        container.scrollBy({
+          left: direction * scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    </script>
+  </body>
+</html>
