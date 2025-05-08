@@ -1,122 +1,305 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <link rel="icon" href="社團logo.jpg" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WFTRC</title>
-    <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="社團logo.jpg" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WFTRC | 首頁</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #E0E0E0;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ecf0f1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      height: 60px;
+      z-index: 300;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 1.3rem;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      padding: 8px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    nav a:hover {
+      color: #607B7D;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background-color: #607B7D;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    section {
+      padding-top: 80px;
+    }
+    .background-container {
+      position: relative;
+      width: 80%; 
+      min-height: 750px;  
+      background-image: url('終端機背景.jpg'); 
+      background-size: cover; 
+      background-position: center;  
+      margin: 0 auto; 
+      border-radius: 15px; 
+    }
+    .title-container {
+      position: absolute;
+      top: 50%;  
+      left: -100px;  
+      transform: translate(0, -50%); 
+      background-color: rgba(37, 41, 28, 0.9); 
+      padding: 20px;
+      border-radius: 8px;
+      color: #ffffff;
+      text-align: left; 
+      width: 650px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      white-space: nowrap; 
+    }
+    .hub h1.small {
+      font-size: 3rem;
+      margin: 0;
+    }
+    .hub h1.large {
+      font-size: 5rem;
+      font-weight: 700;
+      margin: 0;
+      white-space: nowrap; 
+    }
+    .purpose-container {
+      margin-top: 30px; 
+      width: 100%;
+      text-align: left;
+      padding: 30px 100px;
+      border-radius: 8px;
+    }
+    .purpose-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .purpose-content {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    .slogan {
+      margin-top: 30px; 
+      width: 100%;
+      text-align: center;
+      padding: 30px;
+      border-radius: 8px;
+    }
+    .slogan h1{
+      text-align: center;
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+    .mac-slider {
+      padding: 40px 0;
+    }
+    .mac-slider h1 {
+      text-align: left;
+      font-size: 2.5rem;
+      padding-left: 20px;
+    }
+    .slider-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 16px;
+      padding: 16px 0;
+      width: 100%;
+    }
+    .card {
+      flex: 0 0 auto;
+      width: 300px;
+      height: 450px;
+      background-color: #f0f0f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      scroll-snap-align: start;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .scroll-btn {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 24px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    .scroll-btn.left {
+      left: 0;
+    }
+    .scroll-btn.right {
+      right: 0;
+    }
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #aaa;
+      border-radius: 4px;
+    }
+    footer {
+      background-color: #000000;
+      color: #B7B7B7;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-      <h1>WFSH 112 實驗班</h1>
-      <nav>
-        <a href="#hub">首頁</a>
-        <a href="#infomation">資訊</a>
-        <a href="#section3">議程</a>
-        <a href="#about_us">關於我們</a>
-        <a href="#staff_intro">幹部介紹</a>
-      </nav>
-    </header>
-  
-    <!-- Section：集訓宗旨 (hub) -->
-    <section id="hub" class="hub">
-      <div class="background-container">
-        <!-- 標題容器 -->
-        <div class="title-container">
-          <h1 class="small">IOT之旅</h1>
-          <h1 class="large">2025 WFTRC集訓</h1>
-        </div>
-      </div>
-    </section>
-  
-    <!-- 新增的目的區塊 -->
-    <section id="purpose" class="purpose-container">
-      <div class="purpose-container">
-        <h2 class="purpose-title">目的</h2>
-        <p class="purpose-content">
-          隨著科技進步，物聯網日益普及，從自走車入門，到加值擴展各種功能，我們追求挑戰與突破的精神。
-        </p>
-      </div>
-    </section>
-    <section id="purpose" class="slogan">
-      <div class="slogan">
-        <h1>"沒有做不到，只有想不到"</h2>
-      </div>
-    </section>
+  <header>
+    <h1>WFSH 113 實驗班</h1>
+    <nav>
+      <a href="#hub">首頁</a>
+      <a href="https://owo-god.github.io/WFTRC/aboutUS">關於我們</a>
+      <a href="https://owo-god.github.io/WFTRC/staff">幹部介紹</a>
+    </nav>
+  </header>
 
-    <!-- 🔽 新增：卡片滑動區塊 -->
-    <section class="mac-slider">
-      <h1>了解 Mac。</h1>
-      <div class="slider-container">
-        <button class="scroll-btn left" onclick="scrollCards(-1)">&#10094;</button>
-
-        <div class="scroll-container" id="cardContainer">
-          <!-- 9 張卡片 -->
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=AI+與+macOS" alt="">
-            <h3>容易用，容易愛上。</h3>
-            <p>Apple Intelligence 與 macOS 緊密結合。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=效能+與+電池" alt="">
-            <h3>速度快，持續耐久。</h3>
-            <p>高效能晶片與電池續航力強。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=Mac+iPhone" alt="">
-            <h3>夢幻組合。</h3>
-            <p>無縫接軌你的裝置。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=App+相容性" alt="">
-            <h3>熟悉的 App 都能用。</h3>
-            <p>Word、Excel、Slack 全都支援。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=安全性" alt="">
-            <h3>內建保護。</h3>
-            <p>強化的安全與隱私控制。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=創意工具" alt="">
-            <h3>激發創意。</h3>
-            <p>從 Final Cut Pro 到 Logic Pro，應有盡有。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=iCloud+整合" alt="">
-            <h3>資料隨手可得。</h3>
-            <p>所有裝置自動同步。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=鍵盤+滑鼠支援" alt="">
-            <h3>無痛切換。</h3>
-            <p>鍵盤滑鼠一套通吃。</p>
-          </div>
-          <div class="card">
-            <img src="https://via.placeholder.com/300x200?text=macOS+更新" alt="">
-            <h3>一直進化。</h3>
-            <p>每年都有新功能、新體驗。</p>
-          </div>
-        </div>
-
-        <button class="scroll-btn right" onclick="scrollCards(1)">&#10095;</button>
+  <section id="hub" class="hub">
+    <div class="background-container">
+      <div class="title-container">
+        <h1 class="small">IOT之旅</h1>
+        <h1 class="large">2025 WFTRC集訓</h1>
       </div>
-    </section>
-    <footer>
-      <p>Copyright © 2023 Hamiki All Rights Reserved.</p>
-    </footer>
+    </div>
+  </section>
 
-    <!-- JS 控制滑動 -->
-    <script>
-      function scrollCards(direction) {
-        const container = document.getElementById('cardContainer');
-        const scrollAmount = 320;
-        container.scrollBy({
-          left: direction * scrollAmount,
-          behavior: 'smooth'
-        });
-      }
-    </script>
-  </body>
+  <section id="purpose" class="purpose-container">
+    <h2 class="purpose-title">目的</h2>
+    <p class="purpose-content">
+      隨著科技進步，物聯網日益普及，從自走車入門，到加值擴展各種功能，我們追求挑戰與突破的精神。
+    </p>
+  </section>
+
+  <section id="slogan" class="slogan">
+    <h1>"沒有做不到，只有想不到"</h1>
+  </section>
+
+  <section class="mac-slider">
+    <h1>了解 Mac。</h1>
+    <div class="slider-container">
+      <button class="scroll-btn left" onclick="scrollCards(-1)">&#10094;</button>
+      <div class="scroll-container" id="cardContainer">
+          <div class="card">
+            <img src="" alt="">
+            <h3>集訓宗旨</h3>
+            <p>隨著科技的進步，互聯網(IOT)在我們生活中越來越常見，以及成為未來趨勢，說到IOT最初階一定就是自走車了，可以把他做得很簡單，也可以很難，可以只用主控版控制，或者是可以加一大堆模組包及零件增加裝置的可看性以及功能。</p>
+          </div>
+          <div class="card">
+            <img src="" alt="">
+            <h3>集訓內容</h3>
+            <p>本次集訓為一日Arduino體驗營，課程時間約為3個半小時，旨在讓學員了解Arduino的運作原理及程式撰寫技巧。活動內容包括導覽高二實驗班的成果發表、課後競賽等。集訓結束後，學員將獲頒證書及紀念品。</p>
+          </div>
+          <div class="card">
+            <img src="" alt="">
+            <h3>集訓對象</h3>
+            <p>國二、國三生</p>
+            <h3>集訓時間 & 地點</h3>
+            <p>地點：電腦教室三 (行政大樓4F)</p>
+            <p>時間：暫定 6/7</p>
+          </div>
+          <div class="card">
+            <img src="" alt="">
+            <h3>關於我們</h3>
+            <p>我們是由一群對資訊報有熱誠的人組成的社團，專注於準備自駕車、龍舟、滾球、生物科技和仿生學等競賽，吸引對計算機科學和電子工程有興趣的學生參與。此外，本社團還設有程式課程，讓學員能夠學習並提升相關技能。</p>
+          </div>
+          <div class="card">
+            <img src="" alt="">
+            <h3>活動起源</h3>
+            <p>兩位社長與老師在某次偶然的契機下，突然受到啟發，決定發起一個服務學習計劃，旨在幫助對相關領域有興趣的學生，讓他們能夠提早接觸並深入了解這些知識。</p>
+          </div>
+          <div class="card">
+            <img src="" alt="">
+            <h3>贊助夥伴</h3>
+            <p></p>
+          </div>
+          <div class="card">
+            <img src="" alt="">
+            <h3>最新消息 / 聯絡資訊</h3>
+            <p>Gmail：cpppy87@gmail.com</p>
+            <p>IG：wfsh.tech</p>
+          </div>
+      </div>
+      <button class="scroll-btn right" onclick="scrollCards(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Copyright © 2023 Hamiki All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function scrollCards(direction) {
+      const container = document.getElementById('cardContainer');
+      const scrollAmount = 320;
+      container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+  </script>
+</body>
 </html>
