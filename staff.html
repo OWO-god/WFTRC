@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <link rel="icon" href="社團logo.jpg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WFTRC | 工作人員介紹</title>
+    <link rel="stylesheet" href="style_staff.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2>工作人員目錄</h2>
+        <ul>
+            <li><a href="#general">總召</a></li>
+            <li><a href="#activity-group">活動組</a></li>
+            <li><a href="#teaching-group">教學組</a></li>
+            <li><a href="#equipment-group">設備組</a></li>
+            <li><a href="#photography-group">攝影組</a></li>
+            <li><a href="#editing-group">剪輯組</a></li>
+            <li><a href="#prize-group">獎品組</a></li>
+            <li><a href="#assembly-group">組裝測試組</a></li>
+            <li><a href="#promotion-group">宣傳組</a></li>
+            <li><nav><a href="home.html">回首頁</a></nav></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="general">
+            <h1>總召</h1>
+            <p>負責報名、通知、簽到、動線指示與秩序維護。</p>
+            <div class="team-grid"></div>
+        </section>
+        <section id="activity-group">
+            <h1>活動組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="teaching-group">
+            <h1>教學組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="equipment-group">
+            <h1>設備組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="photography-group">
+            <h1>攝影組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="editing-group">
+            <h1>剪輯組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="prize-group">
+            <h1>獎品組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="assembly-group">
+            <h1>組裝測試組</h1>
+            <div class="team-grid"></div>
+        </section>
+        <section id="promotion-group">
+            <h1>宣傳組</h1>
+            <div class="team-grid"></div>
+        </section>
+    </main>
+
+    <div id="memberModal" class="modal">
+        <div id="modalContent" class="modal-content card-layout">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="card-banner">
+                <img id="modalBanner" class="banner" src="" alt="橫幅背景">
+                <div class="card-avatar">
+                    <img id="modalImage" class="avatar" src="" alt="照片">
+                    <img id="modalFrame" class="frame" src="" style="display: none;" alt="frame">
+                </div>
+            </div>
+            <div class="card-info">
+                <h2 id="modalName"></h2>
+                <h3>關於我</h3>
+            </div>
+            <div id="modalIntroBox" class="card-section">
+                <p id="modalIntro"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    let memberData = {};
+    fetch('members.json')
+      .then(res => res.json())
+      .then(data => {
+        memberData = data;
+        renderMembers();
+      });
+
+      function renderMembers() {
+        for (const group in memberData) {
+            const container = document.querySelector(`#${group} .team-grid`);
+            if (!container) continue;
+            container.innerHTML = '';
+            
+            memberData[group].forEach(member => {
+                if (!member.id || member.id.trim() === "") return; // ⛔ 跳過無效資料
+                if (!member.image || member.image.trim() === "") {
+                    member.image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXm5uampqajo6Pa2trp6emhoaHl5eXg4OCoqKjc3Nzf39/W1tatra2wsLDIyMi8vLy2trbExMTOzs61tbXhv6YVAAAEl0lEQVR4nO2d27aqMAxFpYSbioL+/79uEPEGW4WmSepY8+287Tlikza0OZsNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUMcmL4ptUeTDP36JTqc6ted9mTiXOZeU+3N7qja/YtnZHZqyF3ukUy2bQ2ep/ed5Q9tD7V7s7pauPmzjdqS0SebtbpZJk8brSOn5n+g9R/IcqSNVdfZRbyCrq/gcKW+/iN89jm0emSPt9t/7XRz3u6gUqV3md3Fs41Gk/LxcsFM8x/JLpapcI9gplnEkHNqt0huIYTHSbl0Ar2G0r0ipj2CnaL36U+Un2CkaX4tF6SmYJGWhLfGW2jeEXRBrbYk30NFfsFM8mv2d0u7brfZ7MrMJNWfx68m1Vebh+Y32GP2d+pX6F0Wbv9OaTTBJLOZTOvGkmYHsZDCIe0bBJNlr60zgqhQj9ioGca7CntqaYcUbwi6IlbbSM3y1cMRaTcz9zxSvlLY2NozVfsTttKUeWdM9/Ghoq7vInUl7TO1rtgEEk2SrrXWHc9N9x9L2mw5BDA+GDNmr4cXQUkUMkWhMpZoA9b7HUM0vgggmiZ3OqXejex5nZ/Pt+a3iX8NUW+xGyn10Gsjs7EyZz/cwVOD31+Hv59IwRwtLh4vf39PkvN3gkb0dQ2qCnC0aO2eLEG0aW40aOgUxtPR1Jki5MFQsAqUaQ4kmTBvDVBMjyEI0tQzDnPLtnPB7qGEXNFQNL7AfoAwdnQaIe2taGgshe9vbUsP7Ct+VrwFLxXCAd29qaU96g+Hy7B2T12g5V6LBVXiBb3Nq70bUBWJrDGdWL+xzJRuTaeYKw0V241fZedqKdpqIUziuLFi6oDCD/z1ak3dnH6HWTzEznGWu+CVUy2n0hk8UI4hgDx3WKmZGN2sTaPdhkMI8LooXpANUrCj9ri6iEexZnG9cq/0nL2ThyIHYBg700JJPbq6JbhoPbdtFj/Jd2UY1qIbS44KxH1dHd7R6KpxAabPYb3CMYxgPFev8ro7mKwblbea1L82MD6pZPJZmxtFy3aCc6bW61TBSunJqy0SxtJlxfr4jnB9Z3wE31r7MUOGdYp5xe1t1g20JPiiaWoyUMusN2FEM87DLUOc0lKAZxXCCRhSpCubXY2BqFOvH7Sn6n7tzlg9q/+Nq5dIf5m3lk6LuFcX17e3vUW2E+8+f+wbNGXWBXiG8ondZOMwV/Sl6n9wCPeiaUdR64iXzG+3RuUEUZszAPDpn/kJOsFNU2NqEr/VPhgp1X6QUPiiKP6CRDaFGEIVDKB9E6RDKBzHUJIx3iKZTyVo4IlsT2d+PfIPoG5NAgzDekwnuTuXzTI9krgn0/v4Tgu/zA3ZI3yE3Z1DnRyr5MxVqXkwRa2eI79hGpHZuYeYLfGUodMtdaxkKLkStZSjWr9HYdY/I7L7FmohTZNqKeolGKtVIdbpnDUW633qpVCqZss+XX4LILHqV0++IyCmYe7TAMiR2pqLd/FdEuvu/b7jV6NGMZBJvhH/fkP3/6lhkKHFC3GZOD5EY5qkm1i5HAwAAAAAAAAAAAAAAAAAAAACAJf4AKkJE8O36wbkAAAAASUVORK5CYII=";
+                }
+                if (!member.icon || member.icon.trim() === "") {
+                    member.icon = "https://i.pinimg.com/280x280_RS/05/d8/5a/05d85a551b6b9f2183e411f63fc9d3ee.jpg";
+                }
+                if (!member.name || member.name.trim() === "") {
+                    member.name = "Unknow";
+                }
+                if (!member.title || member.title.trim() === "") {
+                    member.title = "Unknow";
+                }
+
+                const div = document.createElement('div');
+                div.className = 'member';
+                div.setAttribute('data-id', member.id);
+                div.setAttribute('onclick', 'openModalFromData(this)');
+                div.innerHTML = `
+                    <div class="avatar-box">
+                    <img class="avatar" src="${member.icon}" alt="${member.name}">
+                    </div>
+                    <h3>${member.name}</h3>
+                    <p>${member.title}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+    }
+
+    function openModalFromData(element) {
+        const id = element.getAttribute('data-id');
+        let member = null;
+        for (const group in memberData) {
+            member = memberData[group].find(m => m.id === id);
+            if (member) break;
+        }
+        if (!member) return;
+        document.getElementById('modalName').innerText = `${member.name} | ${member.title}`;
+        document.getElementById('modalIntro').innerText = member.intro || 'Here is nothing...';
+        document.getElementById('modalImage').src = member.image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXm5uampqajo6Pa2trp6emhoaHl5eXg4OCoqKjc3Nzf39/W1tatra2wsLDIyMi8vLy2trbExMTOzs61tbXhv6YVAAAEl0lEQVR4nO2d27aqMAxFpYSbioL+/79uEPEGW4WmSepY8+287Tlikza0OZsNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUMcmL4ptUeTDP36JTqc6ted9mTiXOZeU+3N7qja/YtnZHZqyF3ukUy2bQ2ep/ed5Q9tD7V7s7pauPmzjdqS0SebtbpZJk8brSOn5n+g9R/IcqSNVdfZRbyCrq/gcKW+/iN89jm0emSPt9t/7XRz3u6gUqV3md3Fs41Gk/LxcsFM8x/JLpapcI9gplnEkHNqt0huIYTHSbl0Ar2G0r0ipj2CnaL36U+Un2CkaX4tF6SmYJGWhLfGW2jeEXRBrbYk30NFfsFM8mv2d0u7brfZ7MrMJNWfx68m1Vebh+Y32GP2d+pX6F0Wbv9OaTTBJLOZTOvGkmYHsZDCIe0bBJNlr60zgqhQj9ioGca7CntqaYcUbwi6IlbbSM3y1cMRaTcz9zxSvlLY2NozVfsTttKUeWdM9/Ghoq7vInUl7TO1rtgEEk2SrrXWHc9N9x9L2mw5BDA+GDNmr4cXQUkUMkWhMpZoA9b7HUM0vgggmiZ3OqXejex5nZ/Pt+a3iX8NUW+xGyn10Gsjs7EyZz/cwVOD31+Hv59IwRwtLh4vf39PkvN3gkb0dQ2qCnC0aO2eLEG0aW40aOgUxtPR1Jki5MFQsAqUaQ4kmTBvDVBMjyEI0tQzDnPLtnPB7qGEXNFQNL7AfoAwdnQaIe2taGgshe9vbUsP7Ct+VrwFLxXCAd29qaU96g+Hy7B2T12g5V6LBVXiBb3Nq70bUBWJrDGdWL+xzJRuTaeYKw0V241fZedqKdpqIUziuLFi6oDCD/z1ak3dnH6HWTzEznGWu+CVUy2n0hk8UI4hgDx3WKmZGN2sTaPdhkMI8LooXpANUrCj9ri6iEexZnG9cq/0nL2ThyIHYBg700JJPbq6JbhoPbdtFj/Jd2UY1qIbS44KxH1dHd7R6KpxAabPYb3CMYxgPFev8ro7mKwblbea1L82MD6pZPJZmxtFy3aCc6bW61TBSunJqy0SxtJlxfr4jnB9Z3wE31r7MUOGdYp5xe1t1g20JPiiaWoyUMusN2FEM87DLUOc0lKAZxXCCRhSpCubXY2BqFOvH7Sn6n7tzlg9q/+Nq5dIf5m3lk6LuFcX17e3vUW2E+8+f+wbNGXWBXiG8ondZOMwV/Sl6n9wCPeiaUdR64iXzG+3RuUEUZszAPDpn/kJOsFNU2NqEr/VPhgp1X6QUPiiKP6CRDaFGEIVDKB9E6RDKBzHUJIx3iKZTyVo4IlsT2d+PfIPoG5NAgzDekwnuTuXzTI9krgn0/v4Tgu/zA3ZI3yE3Z1DnRyr5MxVqXkwRa2eI79hGpHZuYeYLfGUodMtdaxkKLkStZSjWr9HYdY/I7L7FmohTZNqKeolGKtVIdbpnDUW633qpVCqZss+XX4LILHqV0++IyCmYe7TAMiR2pqLd/FdEuvu/b7jV6NGMZBJvhH/fkP3/6lhkKHFC3GZOD5EY5qkm1i5HAwAAAAAAAAAAAAAAAAAAAACAJf4AKkJE8O36wbkAAAAASUVORK5CYII=';
+        
+
+        const frameImg = document.getElementById('modalFrame');
+        if (member.frame) {
+            frameImg.src = member.frame;
+            frameImg.style.display = 'block';
+        } else {
+            frameImg.style.display = 'none';
+        }
+
+        const bannerImg = document.getElementById('modalBanner');
+        bannerImg.src = member.banner || 'https://i.pinimg.com/736x/b6/ef/40/b6ef40f2cd4436568d718f150abefca6.jpg';
+
+        const modalContent = document.getElementById('modalContent');
+        modalContent.classList.remove('glow', 'pulse');
+        if (member.effect) modalContent.classList.add(member.effect);
+
+        document.getElementById('memberModal').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('memberModal').classList.remove('show');
+    }
+
+    // 綁定一次就好
+    document.getElementById('memberModal').addEventListener('click', function (e) {
+    if (e.target === this) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+    });
+
+    </script>
+</body>
+</html>
