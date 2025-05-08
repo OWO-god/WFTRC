@@ -1,12 +1,306 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <link rel="icon" href="社團logo.jpg" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WFTRC | 工作人員介紹</title>
-    <link rel="stylesheet" href="style_staff.css">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #faf6ef;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100vh;
+            overflow-y: auto;
+            background: #f0e8dc;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sidebar a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background-color: #607B7D;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+            margin-left: 220px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .member {
+            text-align: center;
+            width: 180px;
+            background-color: #f9f6f2;
+            padding: 5px;
+            border-radius: 5%;
+            /* ✅ 圓形卡片 */
+            aspect-ratio: 1 / 1;
+            /* ✅ 保持長寬一致 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .member:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-box {
+            width: 90px;
+            height: 90px;
+            margin: 0 5px;
+            border-radius: 50%;
+            /* ✅ 圓形卡片 */
+            border: 4px solid #2f3136;
+            aspect-ratio: 1 / 1;
+            /* ✅ 保持長寬一致 */
+            background: #aea9a9;
+            display: flex;
+            /* ✅ 加這個 */
+            align-items: center;
+            /* ✅ 垂直置中 */
+            justify-content: center;
+            /* ✅ 水平置中 */
+        }
+
+        .avatar-box .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* ✅ 建議改成 cover 比 fill 好看 */
+            border-radius: 50%;
+            /* ✅ 確保圖片也圓形 */
+        }
+
+        .member h3 {
+            font-size: 1.2em;
+            margin: 8px 0 2px;
+            font-weight: bold;
+        }
+
+        .member p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content.card-layout {
+            background-color: #2f3136;
+            border-radius: 12px;
+            padding: 0;
+            width: 360px;
+            max-width: 90vw;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-content .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .card-banner {
+            background-color: #6b99a5;
+            height: 100px;
+            width: 100%;
+            position: relative;
+        }
+
+        .card-banner .banner {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 或改成 contain 看是否更貼近你需求 */
+        }
+
+        .card-avatar {
+            position: absolute;
+            top: 48px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .card-avatar .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #2f3136;
+            background-color: #ffffff;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-avatar .frame {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 96px;
+            height: 96px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .card-info {
+            margin-top: 30px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .card-info h2 {
+            font-size: 1.3rem;
+            margin: 0 10px 4px;
+            color: #fff;
+        }
+
+        .card-info h3 {
+            font-size: 1.0rem;
+            margin: 0 10px 4px;
+            color: #fff;
+        }
+
+        .card-info p {
+            font-size: 0.95rem;
+            color: #b9bbbe;
+            margin: 0;
+        }
+
+        .card-section {
+            background-color: #202225;
+            padding: 16px;
+            margin: 0 16px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        .modal-content.glow {
+            animation: glowPulse 2s infinite;
+        }
+
+        .modal-content.pulse {
+            animation: pulseAnim 2.2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff;
+            }
+
+            50% {
+                box-shadow: 0 0 24px #00eaff, 0 0 40px #00eaff;
+            }
+        }
+
+        @keyframes pulseAnim {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .team-grid {
+                justify-content: center;
+            }
+
+            .member {
+                width: 140px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <nav class="sidebar">
         <h2>工作人員目錄</h2>
@@ -20,7 +314,9 @@
             <li><a href="#prize-group">獎品組</a></li>
             <li><a href="#assembly-group">組裝測試組</a></li>
             <li><a href="#promotion-group">宣傳組</a></li>
-            <li><nav><a href="home.html">回首頁</a></nav></li>
+            <li>
+                <nav><a href="home.html">回首頁</a></nav>
+            </li>
         </ul>
     </nav>
 
@@ -85,95 +381,95 @@
     </div>
 
     <script>
-    let memberData = {};
-    fetch('members.json')
-      .then(res => res.json())
-      .then(data => {
-        memberData = data;
-        renderMembers();
-      });
+        let memberData = {};
+        fetch('members.json')
+            .then(res => res.json())
+            .then(data => {
+                memberData = data;
+                renderMembers();
+            });
 
-      function renderMembers() {
-        for (const group in memberData) {
-            const container = document.querySelector(`#${group} .team-grid`);
-            if (!container) continue;
-            container.innerHTML = '';
-            
-            memberData[group].forEach(member => {
-                if (!member.id || member.id.trim() === "") return; // ⛔ 跳過無效資料
-                if (!member.image || member.image.trim() === "") {
-                    member.image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXm5uampqajo6Pa2trp6emhoaHl5eXg4OCoqKjc3Nzf39/W1tatra2wsLDIyMi8vLy2trbExMTOzs61tbXhv6YVAAAEl0lEQVR4nO2d27aqMAxFpYSbioL+/79uEPEGW4WmSepY8+287Tlikza0OZsNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUMcmL4ptUeTDP36JTqc6ted9mTiXOZeU+3N7qja/YtnZHZqyF3ukUy2bQ2ep/ed5Q9tD7V7s7pauPmzjdqS0SebtbpZJk8brSOn5n+g9R/IcqSNVdfZRbyCrq/gcKW+/iN89jm0emSPt9t/7XRz3u6gUqV3md3Fs41Gk/LxcsFM8x/JLpapcI9gplnEkHNqt0huIYTHSbl0Ar2G0r0ipj2CnaL36U+Un2CkaX4tF6SmYJGWhLfGW2jeEXRBrbYk30NFfsFM8mv2d0u7brfZ7MrMJNWfx68m1Vebh+Y32GP2d+pX6F0Wbv9OaTTBJLOZTOvGkmYHsZDCIe0bBJNlr60zgqhQj9ioGca7CntqaYcUbwi6IlbbSM3y1cMRaTcz9zxSvlLY2NozVfsTttKUeWdM9/Ghoq7vInUl7TO1rtgEEk2SrrXWHc9N9x9L2mw5BDA+GDNmr4cXQUkUMkWhMpZoA9b7HUM0vgggmiZ3OqXejex5nZ/Pt+a3iX8NUW+xGyn10Gsjs7EyZz/cwVOD31+Hv59IwRwtLh4vf39PkvN3gkb0dQ2qCnC0aO2eLEG0aW40aOgUxtPR1Jki5MFQsAqUaQ4kmTBvDVBMjyEI0tQzDnPLtnPB7qGEXNFQNL7AfoAwdnQaIe2taGgshe9vbUsP7Ct+VrwFLxXCAd29qaU96g+Hy7B2T12g5V6LBVXiBb3Nq70bUBWJrDGdWL+xzJRuTaeYKw0V241fZedqKdpqIUziuLFi6oDCD/z1ak3dnH6HWTzEznGWu+CVUy2n0hk8UI4hgDx3WKmZGN2sTaPdhkMI8LooXpANUrCj9ri6iEexZnG9cq/0nL2ThyIHYBg700JJPbq6JbhoPbdtFj/Jd2UY1qIbS44KxH1dHd7R6KpxAabPYb3CMYxgPFev8ro7mKwblbea1L82MD6pZPJZmxtFy3aCc6bW61TBSunJqy0SxtJlxfr4jnB9Z3wE31r7MUOGdYp5xe1t1g20JPiiaWoyUMusN2FEM87DLUOc0lKAZxXCCRhSpCubXY2BqFOvH7Sn6n7tzlg9q/+Nq5dIf5m3lk6LuFcX17e3vUW2E+8+f+wbNGXWBXiG8ondZOMwV/Sl6n9wCPeiaUdR64iXzG+3RuUEUZszAPDpn/kJOsFNU2NqEr/VPhgp1X6QUPiiKP6CRDaFGEIVDKB9E6RDKBzHUJIx3iKZTyVo4IlsT2d+PfIPoG5NAgzDekwnuTuXzTI9krgn0/v4Tgu/zA3ZI3yE3Z1DnRyr5MxVqXkwRa2eI79hGpHZuYeYLfGUodMtdaxkKLkStZSjWr9HYdY/I7L7FmohTZNqKeolGKtVIdbpnDUW633qpVCqZss+XX4LILHqV0++IyCmYe7TAMiR2pqLd/FdEuvu/b7jV6NGMZBJvhH/fkP3/6lhkKHFC3GZOD5EY5qkm1i5HAwAAAAAAAAAAAAAAAAAAAACAJf4AKkJE8O36wbkAAAAASUVORK5CYII=";
-                }
-                if (!member.icon || member.icon.trim() === "") {
-                    member.icon = "https://i.pinimg.com/280x280_RS/05/d8/5a/05d85a551b6b9f2183e411f63fc9d3ee.jpg";
-                }
-                if (!member.name || member.name.trim() === "") {
-                    member.name = "Unknow";
-                }
-                if (!member.title || member.title.trim() === "") {
-                    member.title = "Unknow";
-                }
+        function renderMembers() {
+            for (const group in memberData) {
+                const container = document.querySelector(`#${group} .team-grid`);
+                if (!container) continue;
+                container.innerHTML = '';
 
-                const div = document.createElement('div');
-                div.className = 'member';
-                div.setAttribute('data-id', member.id);
-                div.setAttribute('onclick', 'openModalFromData(this)');
-                div.innerHTML = `
+                memberData[group].forEach(member => {
+                    if (!member.id || member.id.trim() === "") return; // ⛔ 跳過無效資料
+                    if (!member.image || member.image.trim() === "") {
+                        member.image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXm5uampqajo6Pa2trp6emhoaHl5eXg4OCoqKjc3Nzf39/W1tatra2wsLDIyMi8vLy2trbExMTOzs61tbXhv6YVAAAEl0lEQVR4nO2d27aqMAxFpYSbioL+/79uEPEGW4WmSepY8+287Tlikza0OZsNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUMcmL4ptUeTDP36JTqc6ted9mTiXOZeU+3N7qja/YtnZHZqyF3ukUy2bQ2ep/ed5Q9tD7V7s7pauPmzjdqS0SebtbpZJk8brSOn5n+g9R/IcqSNVdfZRbyCrq/gcKW+/iN89jm0emSPt9t/7XRz3u6gUqV3md3Fs41Gk/LxcsFM8x/JLpapcI9gplnEkHNqt0huIYTHSbl0Ar2G0r0ipj2CnaL36U+Un2CkaX4tF6SmYJGWhLfGW2jeEXRBrbYk30NFfsFM8mv2d0u7brfZ7MrMJNWfx68m1Vebh+Y32GP2d+pX6F0Wbv9OaTTBJLOZTOvGkmYHsZDCIe0bBJNlr60zgqhQj9ioGca7CntqaYcUbwi6IlbbSM3y1cMRaTcz9zxSvlLY2NozVfsTttKUeWdM9/Ghoq7vInUl7TO1rtgEEk2SrrXWHc9N9x9L2mw5BDA+GDNmr4cXQUkUMkWhMpZoA9b7HUM0vgggmiZ3OqXejex5nZ/Pt+a3iX8NUW+xGyn10Gsjs7EyZz/cwVOD31+Hv59IwRwtLh4vf39PkvN3gkb0dQ2qCnC0aO2eLEG0aW40aOgUxtPR1Jki5MFQsAqUaQ4kmTBvDVBMjyEI0tQzDnPLtnPB7qGEXNFQNL7AfoAwdnQaIe2taGgshe9vbUsP7Ct+VrwFLxXCAd29qaU96g+Hy7B2T12g5V6LBVXiBb3Nq70bUBWJrDGdWL+xzJRuTaeYKw0V241fZedqKdpqIUziuLFi6oDCD/z1ak3dnH6HWTzEznGWu+CVUy2n0hk8UI4hgDx3WKmZGN2sTaPdhkMI8LooXpANUrCj9ri6iEexZnG9cq/0nL2ThyIHYBg700JJPbq6JbhoPbdtFj/Jd2UY1qIbS44KxH1dHd7R6KpxAabPYb3CMYxgPFev8ro7mKwblbea1L82MD6pZPJZmxtFy3aCc6bW61TBSunJqy0SxtJlxfr4jnB9Z3wE31r7MUOGdYp5xe1t1g20JPiiaWoyUMusN2FEM87DLUOc0lKAZxXCCRhSpCubXY2BqFOvH7Sn6n7tzlg9q/+Nq5dIf5m3lk6LuFcX17e3vUW2E+8+f+wbNGXWBXiG8ondZOMwV/Sl6n9wCPeiaUdR64iXzG+3RuUEUZszAPDpn/kJOsFNU2NqEr/VPhgp1X6QUPiiKP6CRDaFGEIVDKB9E6RDKBzHUJIx3iKZTyVo4IlsT2d+PfIPoG5NAgzDekwnuTuXzTI9krgn0/v4Tgu/zA3ZI3yE3Z1DnRyr5MxVqXkwRa2eI79hGpHZuYeYLfGUodMtdaxkKLkStZSjWr9HYdY/I7L7FmohTZNqKeolGKtVIdbpnDUW633qpVCqZss+XX4LILHqV0++IyCmYe7TAMiR2pqLd/FdEuvu/b7jV6NGMZBJvhH/fkP3/6lhkKHFC3GZOD5EY5qkm1i5HAwAAAAAAAAAAAAAAAAAAAACAJf4AKkJE8O36wbkAAAAASUVORK5CYII=";
+                    }
+                    if (!member.icon || member.icon.trim() === "") {
+                        member.icon = "https://i.pinimg.com/280x280_RS/05/d8/5a/05d85a551b6b9f2183e411f63fc9d3ee.jpg";
+                    }
+                    if (!member.name || member.name.trim() === "") {
+                        member.name = "Unknow";
+                    }
+                    if (!member.title || member.title.trim() === "") {
+                        member.title = "Unknow";
+                    }
+
+                    const div = document.createElement('div');
+                    div.className = 'member';
+                    div.setAttribute('data-id', member.id);
+                    div.setAttribute('onclick', 'openModalFromData(this)');
+                    div.innerHTML = `
                     <div class="avatar-box">
                     <img class="avatar" src="${member.icon}" alt="${member.name}">
                     </div>
                     <h3>${member.name}</h3>
                     <p>${member.title}</p>
                 `;
-                container.appendChild(div);
-            });
-        }
-    }
-
-    function openModalFromData(element) {
-        const id = element.getAttribute('data-id');
-        let member = null;
-        for (const group in memberData) {
-            member = memberData[group].find(m => m.id === id);
-            if (member) break;
-        }
-        if (!member) return;
-        document.getElementById('modalName').innerText = `${member.name} | ${member.title}`;
-        document.getElementById('modalIntro').innerText = member.intro || 'Here is nothing...';
-        document.getElementById('modalImage').src = member.image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXm5uampqajo6Pa2trp6emhoaHl5eXg4OCoqKjc3Nzf39/W1tatra2wsLDIyMi8vLy2trbExMTOzs61tbXhv6YVAAAEl0lEQVR4nO2d27aqMAxFpYSbioL+/79uEPEGW4WmSepY8+287Tlikza0OZsNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUMcmL4ptUeTDP36JTqc6ted9mTiXOZeU+3N7qja/YtnZHZqyF3ukUy2bQ2ep/ed5Q9tD7V7s7pauPmzjdqS0SebtbpZJk8brSOn5n+g9R/IcqSNVdfZRbyCrq/gcKW+/iN89jm0emSPt9t/7XRz3u6gUqV3md3Fs41Gk/LxcsFM8x/JLpapcI9gplnEkHNqt0huIYTHSbl0Ar2G0r0ipj2CnaL36U+Un2CkaX4tF6SmYJGWhLfGW2jeEXRBrbYk30NFfsFM8mv2d0u7brfZ7MrMJNWfx68m1Vebh+Y32GP2d+pX6F0Wbv9OaTTBJLOZTOvGkmYHsZDCIe0bBJNlr60zgqhQj9ioGca7CntqaYcUbwi6IlbbSM3y1cMRaTcz9zxSvlLY2NozVfsTttKUeWdM9/Ghoq7vInUl7TO1rtgEEk2SrrXWHc9N9x9L2mw5BDA+GDNmr4cXQUkUMkWhMpZoA9b7HUM0vgggmiZ3OqXejex5nZ/Pt+a3iX8NUW+xGyn10Gsjs7EyZz/cwVOD31+Hv59IwRwtLh4vf39PkvN3gkb0dQ2qCnC0aO2eLEG0aW40aOgUxtPR1Jki5MFQsAqUaQ4kmTBvDVBMjyEI0tQzDnPLtnPB7qGEXNFQNL7AfoAwdnQaIe2taGgshe9vbUsP7Ct+VrwFLxXCAd29qaU96g+Hy7B2T12g5V6LBVXiBb3Nq70bUBWJrDGdWL+xzJRuTaeYKw0V241fZedqKdpqIUziuLFi6oDCD/z1ak3dnH6HWTzEznGWu+CVUy2n0hk8UI4hgDx3WKmZGN2sTaPdhkMI8LooXpANUrCj9ri6iEexZnG9cq/0nL2ThyIHYBg700JJPbq6JbhoPbdtFj/Jd2UY1qIbS44KxH1dHd7R6KpxAabPYb3CMYxgPFev8ro7mKwblbea1L82MD6pZPJZmxtFy3aCc6bW61TBSunJqy0SxtJlxfr4jnB9Z3wE31r7MUOGdYp5xe1t1g20JPiiaWoyUMusN2FEM87DLUOc0lKAZxXCCRhSpCubXY2BqFOvH7Sn6n7tzlg9q/+Nq5dIf5m3lk6LuFcX17e3vUW2E+8+f+wbNGXWBXiG8ondZOMwV/Sl6n9wCPeiaUdR64iXzG+3RuUEUZszAPDpn/kJOsFNU2NqEr/VPhgp1X6QUPiiKP6CRDaFGEIVDKB9E6RDKBzHUJIx3iKZTyVo4IlsT2d+PfIPoG5NAgzDekwnuTuXzTI9krgn0/v4Tgu/zA3ZI3yE3Z1DnRyr5MxVqXkwRa2eI79hGpHZuYeYLfGUodMtdaxkKLkStZSjWr9HYdY/I7L7FmohTZNqKeolGKtVIdbpnDUW633qpVCqZss+XX4LILHqV0++IyCmYe7TAMiR2pqLd/FdEuvu/b7jV6NGMZBJvhH/fkP3/6lhkKHFC3GZOD5EY5qkm1i5HAwAAAAAAAAAAAAAAAAAAAACAJf4AKkJE8O36wbkAAAAASUVORK5CYII=';
-        
-
-        const frameImg = document.getElementById('modalFrame');
-        if (member.frame) {
-            frameImg.src = member.frame;
-            frameImg.style.display = 'block';
-        } else {
-            frameImg.style.display = 'none';
+                    container.appendChild(div);
+                });
+            }
         }
 
-        const bannerImg = document.getElementById('modalBanner');
-        bannerImg.src = member.banner || 'https://i.pinimg.com/736x/b6/ef/40/b6ef40f2cd4436568d718f150abefca6.jpg';
+        function openModalFromData(element) {
+            const id = element.getAttribute('data-id');
+            let member = null;
+            for (const group in memberData) {
+                member = memberData[group].find(m => m.id === id);
+                if (member) break;
+            }
+            if (!member) return;
+            document.getElementById('modalName').innerText = `${member.name} | ${member.title}`;
+            document.getElementById('modalIntro').innerText = member.intro || 'Here is nothing...';
+            document.getElementById('modalImage').src = member.image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXm5uampqajo6Pa2trp6emhoaHl5eXg4OCoqKjc3Nzf39/W1tatra2wsLDIyMi8vLy2trbExMTOzs61tbXhv6YVAAAEl0lEQVR4nO2d27aqMAxFpYSbioL+/79uEPEGW4WmSepY8+287Tlikza0OZsNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUMcmL4ptUeTDP36JTqc6ted9mTiXOZeU+3N7qja/YtnZHZqyF3ukUy2bQ2ep/ed5Q9tD7V7s7pauPmzjdqS0SebtbpZJk8brSOn5n+g9R/IcqSNVdfZRbyCrq/gcKW+/iN89jm0emSPt9t/7XRz3u6gUqV3md3Fs41Gk/LxcsFM8x/JLpapcI9gplnEkHNqt0huIYTHSbl0Ar2G0r0ipj2CnaL36U+Un2CkaX4tF6SmYJGWhLfGW2jeEXRBrbYk30NFfsFM8mv2d0u7brfZ7MrMJNWfx68m1Vebh+Y32GP2d+pX6F0Wbv9OaTTBJLOZTOvGkmYHsZDCIe0bBJNlr60zgqhQj9ioGca7CntqaYcUbwi6IlbbSM3y1cMRaTcz9zxSvlLY2NozVfsTttKUeWdM9/Ghoq7vInUl7TO1rtgEEk2SrrXWHc9N9x9L2mw5BDA+GDNmr4cXQUkUMkWhMpZoA9b7HUM0vgggmiZ3OqXejex5nZ/Pt+a3iX8NUW+xGyn10Gsjs7EyZz/cwVOD31+Hv59IwRwtLh4vf39PkvN3gkb0dQ2qCnC0aO2eLEG0aW40aOgUxtPR1Jki5MFQsAqUaQ4kmTBvDVBMjyEI0tQzDnPLtnPB7qGEXNFQNL7AfoAwdnQaIe2taGgshe9vbUsP7Ct+VrwFLxXCAd29qaU96g+Hy7B2T12g5V6LBVXiBb3Nq70bUBWJrDGdWL+xzJRuTaeYKw0V241fZedqKdpqIUziuLFi6oDCD/z1ak3dnH6HWTzEznGWu+CVUy2n0hk8UI4hgDx3WKmZGN2sTaPdhkMI8LooXpANUrCj9ri6iEexZnG9cq/0nL2ThyIHYBg700JJPbq6JbhoPbdtFj/Jd2UY1qIbS44KxH1dHd7R6KpxAabPYb3CMYxgPFev8ro7mKwblbea1L82MD6pZPJZmxtFy3aCc6bW61TBSunJqy0SxtJlxfr4jnB9Z3wE31r7MUOGdYp5xe1t1g20JPiiaWoyUMusN2FEM87DLUOc0lKAZxXCCRhSpCubXY2BqFOvH7Sn6n7tzlg9q/+Nq5dIf5m3lk6LuFcX17e3vUW2E+8+f+wbNGXWBXiG8ondZOMwV/Sl6n9wCPeiaUdR64iXzG+3RuUEUZszAPDpn/kJOsFNU2NqEr/VPhgp1X6QUPiiKP6CRDaFGEIVDKB9E6RDKBzHUJIx3iKZTyVo4IlsT2d+PfIPoG5NAgzDekwnuTuXzTI9krgn0/v4Tgu/zA3ZI3yE3Z1DnRyr5MxVqXkwRa2eI79hGpHZuYeYLfGUodMtdaxkKLkStZSjWr9HYdY/I7L7FmohTZNqKeolGKtVIdbpnDUW633qpVCqZss+XX4LILHqV0++IyCmYe7TAMiR2pqLd/FdEuvu/b7jV6NGMZBJvhH/fkP3/6lhkKHFC3GZOD5EY5qkm1i5HAwAAAAAAAAAAAAAAAAAAAACAJf4AKkJE8O36wbkAAAAASUVORK5CYII=';
 
-        const modalContent = document.getElementById('modalContent');
-        modalContent.classList.remove('glow', 'pulse');
-        if (member.effect) modalContent.classList.add(member.effect);
 
-        document.getElementById('memberModal').classList.add('show');
-    }
+            const frameImg = document.getElementById('modalFrame');
+            if (member.frame) {
+                frameImg.src = member.frame;
+                frameImg.style.display = 'block';
+            } else {
+                frameImg.style.display = 'none';
+            }
 
-    function closeModal() {
-        document.getElementById('memberModal').classList.remove('show');
-    }
+            const bannerImg = document.getElementById('modalBanner');
+            bannerImg.src = member.banner || 'https://i.pinimg.com/736x/b6/ef/40/b6ef40f2cd4436568d718f150abefca6.jpg';
 
-    // 綁定一次就好
-    document.getElementById('memberModal').addEventListener('click', function (e) {
-    if (e.target === this) closeModal();
-    });
+            const modalContent = document.getElementById('modalContent');
+            modalContent.classList.remove('glow', 'pulse');
+            if (member.effect) modalContent.classList.add(member.effect);
 
-    document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
-    });
+            document.getElementById('memberModal').classList.add('show');
+        }
 
+        function closeModal() {
+            document.getElementById('memberModal').classList.remove('show');
+        }
+
+        // 綁定一次就好
+        document.getElementById('memberModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
     </script>
 </body>
+
 </html>
