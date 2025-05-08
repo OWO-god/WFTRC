@@ -1,0 +1,111 @@
+{
+    "general": [
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image",
+          "name": "",
+          "title": "",
+          "intro": "",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/黃緯紘_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/黃緯紘_image.jpg",
+          "name": "黃緯紘",
+          "title": "總召",
+          "intro": "一位CTF玩家，目前是B33F的隊員，喜歡參與CTF比賽、底層與架構研究、漏洞分析，還經營資訊研究社並擔任社長與講師，課餘時間也常常參與資安發表會，與他人一同討論與分享資源。",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/游博森_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/游博森_image.jpg",
+          "name": "游博森",
+          "title": "總召",
+          "intro": "201邊緣人，ENFJ的i人\n程式新手和網站終極者，剛開始學C++跟python，只會億點點\n正在研究量子力學以及如何把同學網站寫炸不讓他發現報錯",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/陳淽渝_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/陳淽渝_image.jpg",
+          "name": "陳淽渝",
+          "title": "活動組組長",
+          "intro": "陳淽渝丨Zhiyuuuuu.\n✧ 社交雷達滿格，但一出門就想原地返航 🧭\n✧ 笑點低到自己都開始懷疑人生 🤭\n✧ 自帶鈍感力，不怕尷尬，只怕餓 🤤\n✧ 喜歡聽音樂🎵、唱歌🎤\n丨話癆日常 & 笑聲環繞丨{ 𝐄𝐍𝐅𝐏 }\n🌀 跟朋友走在路上發瘋，連路人都會自動閃邊\n🎧 耳機＝續命｜🍰 甜食＝續魂，兩樣缺一不可",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/陳秉毅_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/陳秉毅_image.jpg",
+          "name": "陳秉毅",
+          "title": "教學組組長",
+          "intro": "𝐸𝓇𝒾𝒸 | 𝕀ℕ𝔽𝕁-𝕋 | Emo 詩人\n◈ 專精開發 MCPE add-on, Python, JSON, JS, HTML\n◈ 專精 Chat GPT 整合",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/倪家楷_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/倪家楷_image.jpg",
+          "name": "倪家楷",
+          "title": "設備組組長",
+          "intro": "我是Kai 喜歡打籃球，玩arduino跟esp32，官方認證gpt master，比起程式更喜歡玩硬體。",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/吳涵宇_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/吳涵宇_image.jpg",
+          "name": "吳涵宇",
+          "title": "攝影組組長",
+          "intro": "發呆的時候看起來很生氣，但真的沒有，不要誤會。\nINFP，大I人，平時沒事不要來找我說話，我會怕😫",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/時瑋駿_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/時瑋駿_image.jpg",
+          "name": "時瑋駿",
+          "title": "剪輯組組長",
+          "intro": "我對軟硬體都有興趣，會用C++、Python和Arduino，之前有參加專題還得過獎，喜歡動手做，現在也持續學習提升自己。",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/鄭詠心_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/鄭詠心_image.jpg",
+          "name": "鄭詠心",
+          "title": "獎品組組長",
+          "intro": "&:AckkiMo*7丨YX-Z\n✧喜歡嘴隊友，看不爽直接炮\n✧瘋瘋癲癲頂級話癆\n✧無腦撒錢追星女\n𝐀𝐥𝐥 𝐟𝐨𝐫 @马嘉祺 @翔霖 \n丨擺拍 & 剪輯丨.{ 𝐄𝐍𝐅𝐏 } \n辦過展覽/團建/應援 (總招&主辦&美宣收卡＝\n續命追星賬→mjq12_eternal.xl",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/黃煦宸_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/黃煦宸_icon.jpg",
+          "name": "黃煦宸",
+          "title": "組裝組組長",
+          "intro": "我好帥!!!",
+          "frame": "",
+          "effect": "blur"
+      },
+      {
+          "icon": "https://github.com/EricbobXD/activity/tree/main/static/image/吳子棠_icon.jpg",
+          "image": "https://github.com/EricbobXD/activity/tree/main/static/image/吳子棠_image.jpg",
+          "name": "吳子棠",
+          "title": "宣傳組組長",
+          "intro": "平日除了想企劃就是在打遊戲的人，熱愛拍攝、剪影片、玩音樂、唱歌等，不要叫他寫小論文，他保證會瘋掉。也是個資深瓦玩家。\nInstagram:mrshhm10._.academy\nDiscord:notodaybro\nRiot:DFH Butterpuff#luv U",
+          "frame": "",
+          "effect": "blur"
+      }
+  ],
+  "activity-group": [],
+  "teaching-group": [],
+  "equipment-group": [],
+  "photography-group": [],
+  "editing-group": [],
+  "prize-group": [],
+  "assembly-group": [],
+  "promotion-group": []
+}
