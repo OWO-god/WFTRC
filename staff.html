@@ -380,12 +380,17 @@
     </div>
 
     <script>
+        let memberData = {}; // 🔸 全域宣告
+        
         fetch("https://raw.githubusercontent.com/OWO-god/WFTRC/main/assets/job.json")
           .then(res => res.json())
-          .then(data => renderMembers())
+          .then(data => {
+            memberData = data; // ✅ 儲存載入的 JSON 結構
+            renderMembers();   // ✅ 接著渲染
+          })
           .catch(err => console.error("載入失敗：", err));
 
-        
+
         function renderMembers() {
             for (const group in memberData) {
                 const container = document.querySelector(`#${group} .team-grid`);
