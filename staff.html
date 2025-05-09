@@ -380,14 +380,15 @@
     </div>
 
     <script>
-        let memberData = {};
-        fetch('https://raw.githubusercontent.com/OWO-god/WFTRC/blob/main/assets/job.json')
-            .then(res => res.json())
-            .then(data => {
-                memberData = data;
-                renderMembers();
-            });
-
+        let memberData = {}; // 載入分類資料
+        fetch("https://raw.githubusercontent.com/EOWO-god/WFTRC/blob/main/assets/job.json")
+        .then(response => response.json())
+        .then(data => {
+            memberData = data;
+            renderMembers();
+        })
+        .catch(error => console.error("載入分類 JSON 失敗:", error));
+        
         function renderMembers() {
             for (const group in memberData) {
                 const container = document.querySelector(`#${group} .team-grid`);
