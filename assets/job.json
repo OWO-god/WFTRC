@@ -23,7 +23,7 @@
   ],
   "activity-group": [
       {
-          "id": "0",
+          "id": "2",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/陳淽渝_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/陳淽渝_image.jpg",
           "name": "陳淽渝",
@@ -35,7 +35,7 @@
   ],
   "teaching-group": [
       {
-          "id": "0",
+          "id": "3",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/陳秉毅_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/陳秉毅_image.jpg",
           "name": "陳秉毅",
@@ -47,7 +47,7 @@
   ],
   "equipment-group": [
       {
-          "id": "0",
+          "id": "4",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/倪家楷_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/倪家楷_image.jpg",
           "name": "倪家楷",
@@ -59,7 +59,7 @@
   ],
   "photography-group": [
       {
-          "id": "0",
+          "id": "5",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/吳涵宇_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/吳涵宇_image.jpg",
           "name": "吳涵宇",
@@ -71,7 +71,7 @@
   ],
   "editing-group": [
       {
-          "id": "0",
+          "id": "6",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/時瑋駿_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/時瑋駿_image.jpg",
           "name": "時瑋駿",
@@ -83,7 +83,7 @@
   ],
   "prize-group": [
       {
-          "id": "0",
+          "id": "7",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/鄭詠心_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/鄭詠心_image.jpg",
           "name": "鄭詠心",
@@ -95,7 +95,7 @@
   ],
   "assembly-group": [
       {
-          "id": "0",
+          "id": "8",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/黃煦宸_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/黃煦宸_icon.jpg",
           "name": "黃煦宸",
@@ -107,7 +107,7 @@
   ],
   "promotion-group": [
       {
-          "id": "0",
+          "id": "9",
           "icon": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/吳子棠_icon.jpg",
           "image": "https://raw.githubusercontent.com/EricbobXD/activity/main/static/image/吳子棠_image.jpg",
           "name": "吳子棠",
